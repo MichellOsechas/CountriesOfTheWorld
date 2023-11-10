@@ -1,0 +1,267 @@
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+}
+
+body, 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6, 
+p {
+  margin: 0;
+}
+
+/* loading */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #213269;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: 1s all;
+  opacity: 0;
+}
+.loader.show {
+  opacity: 1;
+}
+.loader .spin {
+  border: 5px solid hsla(185, 100%, 62%, 0.2);
+  border-top-color: #3cefff;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+to {
+  transform: rotate(360deg);
+}
+}
+/* Fin loading */
+
+body {
+  offset: 10px;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #213269;
+  background-image: url(fondo.svg);
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: contain;
+  background-position: right;
+  padding: 1rem;
+}
+
+.hidden{
+  display: none;
+}
+.show-flex{
+  height: 100vh ;
+}
+.form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.title-hidden{
+  display: none;
+}
+.title{
+  color: white;
+  padding-top: 12rem;
+  font-size: 2rem;
+}
+#search{
+  padding: 0.5rem;
+  width: 15rem;
+  background-color: #111827;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: white;
+  outline: none;
+  transition: ease-in;
+}
+#search:focus {
+  border: solid 0.2rem #416ecf;
+}
+
+.container{
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  padding: 2rem 2.3rem;
+}
+.pais{
+  display: flex;
+  flex-direction: column;
+  height: 13rem;
+}
+img{
+  height: 70%;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+span {
+  display: flex;
+  background-color: #1c368b;
+  font-weight: 700;
+  color: white;
+  border-radius: 0 0 0.5rem 0.5rem;
+  height: 30%;
+  font-size: 1.3rem;
+  align-items: center;
+  justify-content: center;
+  opacity: 70%;
+}
+.info-pais{
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  opacity: 90%;
+}
+h1 {
+  font-size: 1.5rem;
+}
+.img-country{
+  display: flex;
+  height: 12rem;
+  width: 100%
+}
+.info-country{
+  padding: 0 0.5rem 0.5rem 0.5rem;
+}
+.info-country h1, p {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.2rem;
+}
+.info-climate{
+  padding: 0.1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #30499b;
+}
+.info-clima{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #30499b;
+  top: 0.2rem
+}
+.idClima{
+  width: 3rem;
+  position: inherit;
+  left: 1rem;
+}
+.info-clima-nom{
+  align-items: center;
+  width: 100%;
+}
+.message-error{
+  color: white;
+  font-size: 1.5rem;
+  opacity: 80%;
+}
+
+@media (min-width: 768px){
+  .title{
+    font-size: 3rem;
+  }
+  #search{
+    width: 20rem;
+    font-size: 1.5rem;
+  }
+  .container{
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 2rem 2.3rem;
+    justify-content: center
+  }
+  .pais{
+    width: 48.7%;
+  }
+  .info-pais{
+    width: 80%;
+    flex-direction: row;
+  }
+  .img-country{
+    height: 100%;
+  }
+  .info-country {
+    margin-top: 0.6rem;
+    width: 80%
+  }
+  span {
+    height: 90%;
+  }
+  h1{
+    margin-bottom: 1rem;
+  }
+  /* .message-error{
+    margin-left: 4rem;
+  } */
+  
+}
+
+@media (min-width: 1024px) {
+  .title{
+    font-size: 4rem;  
+  }
+  #search{
+    width: 25rem;
+    font-size: 2rem;
+  }
+  .pais{
+    width: 30.5%;
+  }
+  .container{
+    gap: 2rem;
+    padding: 2rem 7.3rem
+  }
+  .info-pais{
+    font-size: 1.4rem;
+    flex-direction: row;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .info-climate{
+    display: flex;
+    margin-top: 1rem;
+  }
+  .info-clima{
+    /* top: 0.5rem; */
+  }
+  /* .message-error{
+    margin-left: 10rem;
+  } */
+}
+
+@media (min-width: 1440px) {
+  .info-pais{
+    width: 60%;
+  }
+  .info-climate{
+    margin-top: 1 rem;
+  }
+  .info-country {
+    margin-top: 1rem;
+  }
+  .pais{
+    height: 17rem
+  }
+
+}
