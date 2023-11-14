@@ -6,18 +6,11 @@
   border-style: solid; /* 2 */
 }
 
-body, 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6, 
-p {
+body, h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
-/* loading */
+/* ---------------------- loading -------------------------*/
 .loader {
   position: fixed;
   top: 0;
@@ -48,10 +41,12 @@ to {
   transform: rotate(360deg);
 }
 }
-/* Fin loading */
+.hidden{
+  display: none;
+}
 
+/* ----------------------- Body -----------------------------*/
 body {
-  offset: 10px;
   font-family: 'Open Sans', sans-serif;
   background-color: #213269;
   background-image: url(fondo.svg);
@@ -61,13 +56,11 @@ body {
   background-position: right;
   padding: 1rem;
 }
-
-.hidden{
-  display: none;
-}
 .show-flex{
-  height: 100vh ;
+  height: 90vh ;
 }
+
+/* ------------------ Titulo y Formulario --------------------*/
 .form-container{
   display: flex;
   flex-direction: column;
@@ -75,13 +68,13 @@ body {
   align-items: center;
   gap: 1rem;
 }
-.title-hidden{
-  display: none;
-}
 .title{
   color: white;
   padding-top: 12rem;
   font-size: 2rem;
+}
+.title-hidden{
+  display: none;
 }
 #search{
   padding: 0.5rem;
@@ -97,12 +90,23 @@ body {
   border: solid 0.2rem #416ecf;
 }
 
+/* -------------- Container de todos los países ---------------*/
 .container{
   display: flex;
   gap: 1rem;
   flex-direction: column;
   padding: 2rem 2.3rem;
 }
+
+/* Mensaje especificación del país */
+.menssage{
+  color: white;
+  font-size: 1.5rem;
+  opacity: 80%;
+  padding-top: 5rem;
+}
+
+/* Div de cada país (img-título) */
 .pais{
   display: flex;
   flex-direction: column;
@@ -124,6 +128,8 @@ span {
   justify-content: center;
   opacity: 70%;
 }
+
+/* Información detallada de cada país */
 .info-pais{
   background-color: black;
   color: white;
@@ -170,12 +176,9 @@ h1 {
   align-items: center;
   width: 100%;
 }
-.message-error{
-  color: white;
-  font-size: 1.5rem;
-  opacity: 80%;
-}
 
+/*--------------------- Responsive Web Design -------------------*/
+/* Visualización en Tablet */
 @media (min-width: 768px){
   .title{
     font-size: 3rem;
@@ -210,12 +213,9 @@ h1 {
   h1{
     margin-bottom: 1rem;
   }
-  /* .message-error{
-    margin-left: 4rem;
-  } */
-  
 }
 
+/* Visualización en Portatil */
 @media (min-width: 1024px) {
   .title{
     font-size: 4rem;  
@@ -242,14 +242,9 @@ h1 {
     display: flex;
     margin-top: 1rem;
   }
-  .info-clima{
-    /* top: 0.5rem; */
-  }
-  /* .message-error{
-    margin-left: 10rem;
-  } */
 }
 
+/* Visualización en Portatil L */
 @media (min-width: 1440px) {
   .info-pais{
     width: 60%;

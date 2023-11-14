@@ -5,60 +5,69 @@ const loader = document.querySelector('.loader');
 const formContainer = document.querySelector('.form-container');
 const title = document.querySelector('.title');
 
+// Se crea el array de los países
 let countries = [];
 
-// Funcion que pide todos los paises
+// ----------- Funcion que pide todos los paises -------------->
 const getCountries = async () => {
-  // Llamo a la API Rest Countries
+  // Llamo a la API
   // Transformo la respuesta a JSON
   const response = await (await fetch('https://restcountries.com/v3.1/all', {method: 'GET'})).json()
     
-    // Guardo el array de los paises recibido dentro de contries
-    countries = response;
-    console.log(countries);
+  // Guardo el array de los paises recibidos dentro de contries
+  countries = response;
+  console.log(countries);
 
-    setTimeout(() => {
-      loader.classList.add('hidden')
-      body.classList.add('show-flex')
-    }, 1000)
-  
-   // countries = data.filter(country => country.name.common.indexOf(searchInput.value) )
-  }
-  getCountries();
+  // Función para que el loader desaparezca en un tiempo determinado
+  setTimeout(() => {
+    loader.classList.add('hidden')
+    body.classList.add('show-flex')
+  }, 1000)
+}
+// Se llama la función una sola vez
+getCountries();
 
+// ------------ Función que pide el clima --------------------->
+// Se le asigna un parámetro para el nombre del país
 const getClimates = async (nombre) => {
-  
+  // Llamo a la API
+  // Transformo la respuesta a JSON
   const responseClimate = await (await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nombre}&lang=es&appid=88da22064aae277ab985f7314df2c6ee&units=metric`, {method: 'GET'})).json()
   return responseClimate;
-
 }
 
-// Evento de escucha del input
+// -------------- Evento del input ----------------------------->
 searchInput.addEventListener('input', async e => {
+  // Div container empieza vacío
   container.innerHTML = ''
   
+  // Condicional que lee el tamaño del input para desaparecer el título
   if (searchInput.length !== 0) {
     title.classList.add ('title-hidden')
   }
   
+  // Funcion que filtra cada país por su nombre, lo vuelve minúscula y lee el valor del input para buscar los países que empiecen por esa letra 
   const filteredCountries = countries.filter(element => element.name.common.toLowerCase().startsWith(e.target.value.toLowerCase()));
   console.log(filteredCountries);
   
+  // Si no hay nada en el input, no mostrar nada en container
   if (searchInput.value === '') {
     container.innerHTML = ''
- } else if (filteredCountries.length > 10) {
+  }
+  // Si hay más de 10 países, mostrar un mensaje   
+  else if (filteredCountries.length > 10) {
     const message = document.createElement('div')
-    message.classList.add ('message-error')
+    message.classList.add ('menssage')
     message.innerHTML = `
     <p>Demasiados paises, especifica mejor tu respuesta</p>
     `
     container.append(message)
-  } else if (filteredCountries.length < 10 && filteredCountries.length > 1) {
+  } 
+  // Si hay menos de 10 países, se muestran
+  else if (filteredCountries.length < 10 && filteredCountries.length > 1) {
     
+    // Función que trae la bandera y el nombre de cada país
     filteredCountries.forEach(element => {
-        const name = element.name.common;
-        const img = element.flags.png;
-
         const countrys = document.createElement('div')
         countrys.classList.add ('pais')
         countrys.innerHTML = 
@@ -68,12 +77,17 @@ searchInput.addEventListener('input', async e => {
         `;
         container.append (countrys)
     });
-
-  } else if (filteredCountries.length === 1) {
+  } 
+  // Si hay 1 solo país, mostrar su información
+  else if (filteredCountries.length === 1) {
+    // Llamo la función del clima y asigo el argumento
     const clima = await getClimates(filteredCountries[0].name.common)
     console.log(clima);
+    // Guardo el ícono del clima en una variable
     const idClima = clima.weather[0].icon
 
+    // Mostrar la información del país
+    // toLocaleString() --> Separar los números con punto (línea 101)
     const info = document.createElement('div')
     info.classList.add ('info-pais')
     info.innerHTML = 
@@ -99,5 +113,4 @@ searchInput.addEventListener('input', async e => {
     container.append (info)
     
   } 
-
 });
